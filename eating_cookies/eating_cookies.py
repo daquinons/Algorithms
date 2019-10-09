@@ -13,15 +13,16 @@ def eating_cookies(n, cache=None):
     successful_choices = []
     for possibility in itertools.product(possible_choices, repeat=n):
         possibility_without_zeroes = [n for n in possibility if n > 0]
-        if sum(possibility_without_zeroes) == n and possibility_without_zeroes not in successful_choices:
-            successful_choices.append(possibility_without_zeroes)
+        if sum(possibility_without_zeroes) == n:
+            successful_choices.append(
+                "".join([str(number) for number in possibility_without_zeroes]))
 
-    return len(successful_choices)
+    return len(set(successful_choices))
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        num_cookies = int(sys.argv[1])
+    if len(sys.argv) == 1:
+        num_cookies = 3
         print("There are {ways} ways for Cookie Monster to eat {n} cookies.".format(
             ways=eating_cookies(num_cookies), n=num_cookies))
     else:
