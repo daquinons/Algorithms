@@ -11,15 +11,10 @@ import itertools
 def eating_cookies(n, cache=None):
     possible_choices = [0, 1, 2, 3]
     successful_choices = []
-    for possibility in itertools.combinations_with_replacement(possible_choices, n):
+    for possibility in itertools.product(possible_choices, repeat=n):
         possibility_without_zeroes = [n for n in possibility if n > 0]
         if sum(possibility_without_zeroes) == n and possibility_without_zeroes not in successful_choices:
             successful_choices.append(possibility_without_zeroes)
-
-    for choice in successful_choices:
-        for permutation in itertools.permutations(choice):
-            if list(permutation) not in successful_choices:
-                successful_choices.append(list(permutation))
 
     return len(successful_choices)
 
