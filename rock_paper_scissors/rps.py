@@ -7,7 +7,7 @@ import itertools
 def rock_paper_scissors(n):
     options = ["rock", "paper", "scissors"]
     solution = [list(option)
-                for option in list(itertools.product(options, repeat=n))]
+                for option in itertools.product(options, repeat=n)]
     return solution
 
 
